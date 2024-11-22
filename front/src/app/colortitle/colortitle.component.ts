@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Colortitle} from '../models/colortitle';
 
 @Component({
   selector: 'app-colortitle',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './colortitle.component.css'
 })
 export class ColortitleComponent {
-
+    @Input() title!: string;
 }

@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+* {
+	color: whitesmoke;
+}
+
+html, body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #101010;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

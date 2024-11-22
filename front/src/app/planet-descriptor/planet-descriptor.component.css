@@ -1,0 +1,38 @@
+
+h1 {
+	padding: 0;
+	margin: 0;
+
+	text-align: center;
+
+	letter-spacing: 60px;
+
+	font-size: 130px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+p
+{
+	font-family: "Roboto Flex", sans-serif;
+	letter-spacing: 1.5px;
+}
+
+.planet-descriptor-container
+{
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.planet-descriptor
+{
+
+	text-align: center;
+	margin: auto;
+	max-width: 600px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional styling */
+}
+
