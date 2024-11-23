@@ -1,0 +1,20 @@
+
+.planet-statistic-container
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	white-space: nowrap;
+}
+
+.statistic-name {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 12px;
+}
+
+.statistic-value {
+	font-family: "Outfit", sans-serif;
+	font-size: 20px;
+	color: #dadada;
+}
