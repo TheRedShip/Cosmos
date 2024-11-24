@@ -1,0 +1,33 @@
+
+:host
+{
+	--orbit-size: 600px;
+}
+
+.orbit-container
+{
+	max-width: 120px;
+	text-align: center;
+}
+
+.orbit
+{
+	position:absolute;
+	top: calc(50% - var(--orbit-size) / 2);
+	right: calc(var(--orbit-size) / -2);
+	width: var(--orbit-size);
+	height: var(--orbit-size);
+	
+	border-radius: 50%;
+	background: url('data:image/svg+xml;utf8, \
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"> \
+      <circle cx="50" cy="50" r="45" fill="none" stroke="%23505050" stroke-width="0.1" stroke-dasharray="1 4"/> \
+    </svg>') no-repeat center/contain;
+
+	z-index: -2;
+}
+
+.image-orbit
+{
+	width:60%;
+}

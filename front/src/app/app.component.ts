@@ -1,14 +1,13 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {ColortitleComponent} from './colortitle/colortitle.component';
-import {Colortitle} from './models/colortitle';
 import {PlanetDescriptorComponent} from './planet-descriptor/planet-descriptor.component';
 import { Planet } from './models/planet';
 
 @Component({
 	selector: 'app-root',
 	imports: [
-		PlanetDescriptorComponent
+		PlanetDescriptorComponent,
+		RouterOutlet,
 	],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css'
