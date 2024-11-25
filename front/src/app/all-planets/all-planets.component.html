@@ -1,11 +1,10 @@
-<div class="planet-orbits-container">
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
-	<app-planet-orbit />
+<div class="all-planets-container">
+	<div class="planet-orbits-container">
+		@for (planet of planets; track planet.name; let id = $index) {
+			<app-planet-orbit [planet]="planet" [orbit_size]="orbit_size[id]"/>
+		}
+	</div>
+	<div class="sun-container">
+		<img src="assets/image/planets/sun.png" class="sun" />
+	</div>
 </div>

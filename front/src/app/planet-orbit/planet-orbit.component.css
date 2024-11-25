@@ -4,10 +4,18 @@
 	--orbit-size: 600px;
 }
 
-.orbit-container
+.orbit-info-container
 {
-	max-width: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	min-width: 150px;
+	min-height:350px;
 	text-align: center;
+
+	background: black;
 }
 
 .orbit
@@ -17,17 +25,55 @@
 	right: calc(var(--orbit-size) / -2);
 	width: var(--orbit-size);
 	height: var(--orbit-size);
-	
+
 	border-radius: 50%;
 	background: url('data:image/svg+xml;utf8, \
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"> \
-      <circle cx="50" cy="50" r="45" fill="none" stroke="%23505050" stroke-width="0.1" stroke-dasharray="1 4"/> \
+      <circle cx="50" cy="50" r="45" fill="none" stroke="%23505050" stroke-width="0.1" stroke-dasharray="1 1"/> \
     </svg>') no-repeat center/contain;
 
 	z-index: -2;
 }
 
+.info-container
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	flex-direction: column;
+
+
+	width:50px;
+	height:100px;
+}
+
+.below-info-container
+{
+	justify-content: space-evenly;
+	white-space: nowrap;
+}
+
+p
+{
+	letter-spacing: 1.5px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.planet-name
+{
+	font-size:18px;
+	color: #bbbbbb;
+}
+
+.planet-moons, .planet-distance
+{
+	font-size: 14px;
+	color: #555555;
+}
+
 .image-orbit
 {
-	width:60%;
+	/*height: 150px;*/
+	width:150px;
 }

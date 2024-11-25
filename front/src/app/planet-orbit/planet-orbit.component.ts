@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, ViewChild} from '@angular/core';
+import {Planet} from '../models/planet';
 
 @Component({
   selector: 'app-planet-orbit',
@@ -7,5 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './planet-orbit.component.css'
 })
 export class PlanetOrbitComponent {
-  @Input() orbit_size!: number;
+	@Input() planet!: Planet;
+	@Input() orbit_size!: number;
 }

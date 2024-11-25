@@ -1,4 +1,11 @@
-<div class="orbit-container">
-	<img src="assets/image/planets/jupiter.png" class="image-orbit" />
+<div class="orbit-info-container">
+	<div class="top-info-container info-container">
+		<p class="planet-distance">{{ planet.distance_from_sun }} AU</p>
+	</div>
+	<img [src]="planet.image" class="image-orbit" />
+	<div class="below-info-container info-container">
+		<p class="planet-name">{{ planet.name }}</p>
+		<p class="planet-moons">{{ 0 }} Moons</p>
+	</div>
 </div>
-<div class="orbit"></div>
+<div class="orbit" [style.--orbit-size.px]="orbit_size"></div>
