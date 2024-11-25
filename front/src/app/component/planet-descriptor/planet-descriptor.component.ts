@@ -1,8 +1,8 @@
 import {Component, Host, HostListener, Input, OnInit} from '@angular/core';
 import { PlanetStatisticComponent } from '../planet-statistic/planet-statistic.component';
-import { Planet } from '../models/planet';
+import { Planet } from '../../models/planet';
 import {ActivatedRoute} from '@angular/router';
-import {PlanetService} from '../planet-service/planet.service';
+import {PlanetService} from '../../planet-service/planet.service';
 
 @Component({
 	selector: 'app-planet-descriptor',

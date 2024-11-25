@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {PlanetDescriptorComponent} from './planet-descriptor/planet-descriptor.component';
+import {PlanetDescriptorComponent} from './component/planet-descriptor/planet-descriptor.component';
 import { Planet } from './models/planet';
 import {PlanetService} from './planet-service/planet.service';
 
@@ -18,9 +18,4 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	@HostListener('window:wheel', ['$event'])
-	onWindowScroll(e: WheelEvent): void
-	{
-		const scroll = e.deltaY > 0 ? 1 : -1;
-	}
 }

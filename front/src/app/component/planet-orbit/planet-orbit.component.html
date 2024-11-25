@@ -2,7 +2,9 @@
 	<div class="top-info-container info-container">
 		<p class="planet-distance">{{ planet.distance_from_sun }} AU</p>
 	</div>
-	<img [src]="planet.image" class="image-orbit" />
+	<div class="image-orbit-container" [style.--planet-size.px]="getPlanetFrontSize()">
+		<img [src]="planet.image" class="image-orbit" (click)="onClickImage()" #planet_front />
+	</div>
 	<div class="below-info-container info-container">
 		<p class="planet-name">{{ planet.name }}</p>
 		<p class="planet-moons">{{ 0 }} Moons</p>

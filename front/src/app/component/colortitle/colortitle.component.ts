@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Colortitle} from '../models/colortitle';
+import {Colortitle} from '../../models/colortitle';
 
 @Component({
   selector: 'app-colortitle',
