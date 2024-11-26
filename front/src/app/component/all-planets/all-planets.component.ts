@@ -31,19 +31,6 @@ export class AllPlanetsComponent implements OnInit {
 		this.planets = this.planetService.getPlanets();
     }
 
-	zoomToPlanet(planet_front: ElementRef): void
-	{
-		const rect = planet_front.nativeElement.getBoundingClientRect();
-
-		const scaleX = window.innerWidth / rect.width;
-		const scaleY = window.innerHeight / rect.height;
-		const scale = Math.max(scaleX, scaleY);
-		const translateX = (window.innerWidth / 2 - (rect.left + rect.width / 2));
-		const translateY = ((window.innerHeight / 2 - (rect.top + rect.height / 2))) + window.innerHeight / 2;
-
-		planet_front.nativeElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-	}
-
 	private removeAllPlanets(selected_planet: PlanetOrbitComponent)
 	{
 		this.child_planets.forEach((element: any, index: number) =>
@@ -55,7 +42,7 @@ export class AllPlanetsComponent implements OnInit {
 			const below_info_container = element.below_info_container.nativeElement;
 			const image_planet = element.image_planet_front.nativeElement;
 			const image_container = element.image_container_front.nativeElement;
-			const animation_delay: number = 75;
+			const animation_delay: number = 50;
 
 			const distance = Math.abs(selected_planet.id - index);
 			const direction = selected_planet.id > index ? -1 : 1;
@@ -65,21 +52,38 @@ export class AllPlanetsComponent implements OnInit {
 			setTimeout(():void => {image_container.style.transform = `translateX(${impulse * 150}px) scale(0)`}, animation_delay * distance);
 
 			setTimeout(():void => {top_info_container.classList.add("fade-out"); below_info_container.classList.add("fade-out");}, animation_delay * distance);
-			setTimeout(():void => {top_info_container.style.transform = `translateY(${-distance * 50}px)`}, 0);
-			setTimeout(():void => {below_info_container.style.transform = `translateY(${distance * 50}px)`}, 0);
+			setTimeout(():void => {top_info_container.style.transform = `translateY(${-distance * 40}px)`}, 0);
+			setTimeout(():void => {below_info_container.style.transform = `translateY(${distance * 40}px)`}, 0);
 
 		})
 	}
 
-	private showDetailsPlanet(planet_front: ElementRef)
+	zoomToPlanet(planet_front: ElementRef): void
 	{
-		planet_front.nativeElement.classList.add('clicked');
+		const rect = planet_front.nativeElement.getBoundingClientRect();
+
+		const scaleX = window.innerWidth / rect.width;
+		const scaleY = window.innerHeight / rect.height;
+		const scale = Math.max(scaleX, scaleY);
+		const translateX = (window.innerWidth / 2 - (rect.left + rect.width / 2));
+		const translateY = ((window.innerHeight / 2 - (rect.top + rect.height / 2))) + window.innerHeight / 2;
+
+		planet_front.nativeElement.style.transitionTimingFunction = 'ease-in-out';
+		planet_front.nativeElement.style.transitionDuration = '1s';
+		planet_front.nativeElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+	}
+
+	private showDetailsPlanet(image_planet_front: ElementRef)
+	{
+		image_planet_front.nativeElement.classList.add('clicked');
 	}
 
 	onClickPlanet(planetComponent: PlanetOrbitComponent): void
 	{
-		// this.zoomToPlanet(planetComponent.planet_front);
 		this.removeAllPlanets(planetComponent);
-		// this.showDetailsPlanet(planetComponent.planet_front);
+		console.log("cc");
+		setTimeout(() => {this.zoomToPlanet(planetComponent.image_planet_front);}, 750);
+
+		// this.showDetailsPlanet(planetComponent.image_planet_front);
 	}
 }
