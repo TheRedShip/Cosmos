@@ -13,7 +13,7 @@ import {PlanetService} from './planet-service/planet.service';
 	styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-	private title:string = "Cosmos";
+	public title:string = "Cosmos";
 
 	ngOnInit(): void {
 	}

@@ -1,11 +1,11 @@
 <div class="orbit-info-container">
-	<div class="top-info-container info-container">
+	<div class="top-info-container info-container" #top_info_container>
 		<p class="planet-distance">{{ planet.distance_from_sun }} AU</p>
 	</div>
-	<div class="image-orbit-container" [style.--planet-size.px]="getPlanetFrontSize()">
-		<img [src]="planet.image" class="image-orbit" (click)="onClickImage()" #planet_front />
+	<div class="image-orbit-container" [style.--planet-size.px]="getPlanetFrontSize()" #image_container_front >
+		<img [src]="planet.image" class="image-orbit" (click)="onClickImage()" #image_planet_front />
 	</div>
-	<div class="below-info-container info-container">
+	<div class="below-info-container info-container" #below_info_container>
 		<p class="planet-name">{{ planet.name }}</p>
 		<p class="planet-moons">{{ 0 }} Moons</p>
 	</div>
