@@ -1,6 +1,6 @@
-import {Component, Host, HostListener, Input, OnInit} from '@angular/core';
-import { PlanetStatisticComponent } from '../planet-statistic/planet-statistic.component';
-import { Planet } from '../../models/planet';
+import {Component, Host, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {PlanetStatisticComponent} from '../planet-statistic/planet-statistic.component';
+import {Planet} from '../../models/planet';
 import {ActivatedRoute} from '@angular/router';
 import {PlanetService} from '../../planet-service/planet.service';
 
@@ -13,14 +13,11 @@ import {PlanetService} from '../../planet-service/planet.service';
 	styleUrl: './planet-descriptor.component.css'
 })
 export class PlanetDescriptorComponent implements OnInit {
-	@Input() planet!: Planet;
+	public planet!: Planet;
 
-	constructor(private route: ActivatedRoute, private planetService: PlanetService) {}
+	constructor(private route: ActivatedRoute, private planetService: PlanetService) {
+	}
 
     ngOnInit(): void {
-		this.route.params.subscribe(params =>
-		{
-			this.planet = this.planetService.getPlanets()[params["id"]];
-		})
     }
 }

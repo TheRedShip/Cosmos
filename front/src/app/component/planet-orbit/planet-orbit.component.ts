@@ -23,6 +23,8 @@ export class PlanetOrbitComponent {
 	@ViewChild("top_info_container") top_info_container!: ElementRef;
 	@ViewChild("below_info_container") below_info_container!: ElementRef;
 
+	@ViewChild("orbit_front") orbit_front!: ElementRef;
+
 	constructor(private router: Router, private planetService: PlanetService) {}
 
 	getPlanetFrontSize(): number

@@ -24,12 +24,3 @@ html {
 	z-index: 10;
 }
 
-.fade-in
-{
-	opacity: 1 !important;
-}
-
-.fade-out
-{
-	opacity: 0 !important;
-}
