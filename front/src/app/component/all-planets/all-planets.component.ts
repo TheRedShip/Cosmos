@@ -37,41 +37,17 @@ export class AllPlanetsComponent implements OnInit {
 	{
 		this.child_planets.forEach((element: any, index: number) =>
 		{
-			const top_info_container = element.top_info_container.nativeElement;
-			const below_info_container = element.below_info_container.nativeElement;
-			const orbit_front = element.orbit_front.nativeElement;
-			const image_container = element.image_container_front.nativeElement;
+
 			const animation_delay: number = 50;
 
 			const distance = Math.abs(selected_planet.id - index);
 			const direction = selected_planet.id > index ? -1 : 1;
 			const impulse = direction * -distance;
 
-
-			image_container.style.setProperty('--impulse-distance', `${impulse * 150}px`);
-			top_info_container.style.setProperty('--distance-y', `${-distance * 40}px`);
-			below_info_container.style.setProperty('--distance-y', `${distance * 40}px`);
-
-			setTimeout(() =>
-			{
-				top_info_container.classList.add("move-to-distance-and-fade-out");
-				below_info_container.classList.add("move-to-distance-and-fade-out");
-			}, animation_delay * distance);
-
-			setTimeout(() =>
-			{
-				orbit_front.classList.add("opacity-fade-out");
-			}, animation_delay * distance)
-
-			if (element.image_planet_front == selected_planet.image_planet_front)
-				return;
-
-			setTimeout(() =>
-			{
-				image_container.classList.add("move-and-scale-and-fade-out");
-			}, animation_delay * distance);
+			element.hideSwoosh(impulse, distance, animation_delay, selected_planet);
 		})
 
+		selected_planet.image_container_front.nativeElement.classList.add("border-fade-out");
 		this.child_sun.nativeElement.classList.add("move-fade-out");
 	}
 
@@ -103,6 +79,6 @@ export class AllPlanetsComponent implements OnInit {
 		this.removeAllPlanets(planetComponent);
 		setTimeout(() => {this.zoomToPlanet(planetComponent.image_planet_front);}, 750);
 		planetComponent.image_planet_front.nativeElement.style.zIndex = 0;
-		setTimeout(() => {this.showDetailsPlanet(planetComponent.planet);}, 1200);
+		setTimeout(() => {this.showDetailsPlanet(planetComponent.planet);}, 2500);
 	}
 }

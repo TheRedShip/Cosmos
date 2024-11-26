@@ -1,13 +1,18 @@
 <div class="planet-descriptor-container">
 	<div class="planet-descriptor">
-		<h1>{{ planet.name }}</h1>
-	<!--	<img [src]="planet.image" alt="Jupiter">-->
-		<p>{{ planet.description }}</p>
+		@if (planet.name)
+		{
+			<h1>{{ planet.name }}</h1>
+			<p>{{ planet.description }}</p>
+		}
 	</div>
 	<div class="planet-statistics">
-		<app-planet-statistic />
-		<app-planet-statistic />
-		<app-planet-statistic />
-		<app-planet-statistic />
+		@if (planet.name)
+		{
+			<app-planet-statistic />
+			<app-planet-statistic />
+			<app-planet-statistic />
+			<app-planet-statistic />
+		}
 	</div>
 </div>

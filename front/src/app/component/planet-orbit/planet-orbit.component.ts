@@ -36,6 +36,37 @@ export class PlanetOrbitComponent {
 		return smallest_value + (this.planet.diameter - smallest_diameter) / (biggest_diameter - smallest_diameter ) * (biggest_value - smallest_value);
 	}
 
+	hideSwoosh(impulse: number, distance: number, animation_delay: number, selected_planet: PlanetOrbitComponent)
+	{
+		const top_info_container = this.top_info_container.nativeElement;
+		const below_info_container = this.below_info_container.nativeElement;
+		const orbit_front = this.orbit_front.nativeElement;
+		const image_container = this.image_container_front.nativeElement;
+
+		image_container.style.setProperty('--impulse-distance', `${impulse * 150}px`);
+		top_info_container.style.setProperty('--distance-y', `${-distance * 40}px`);
+		below_info_container.style.setProperty('--distance-y', `${distance * 40}px`);
+
+		setTimeout(() =>
+		{
+			top_info_container.classList.add("move-to-distance-and-fade-out");
+			below_info_container.classList.add("move-to-distance-and-fade-out");
+		}, animation_delay * distance);
+
+		setTimeout(() =>
+		{
+			orbit_front.classList.add("opacity-fade-out");
+		}, animation_delay * distance)
+
+		if (this.image_planet_front == selected_planet.image_planet_front)
+			return;
+
+		setTimeout(() =>
+		{
+			image_container.classList.add("move-and-scale-and-fade-out");
+		}, animation_delay * distance);
+	}
+
 	onClickImage(): void
 	{
 		this.parent.onClickPlanet(this);

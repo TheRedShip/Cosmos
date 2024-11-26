@@ -15,7 +15,10 @@ import {PlanetService} from '../../planet-service/planet.service';
 export class PlanetDescriptorComponent implements OnInit {
 	public planet!: Planet;
 
-	constructor(private route: ActivatedRoute, private planetService: PlanetService) {
+	@HostListener('window:wheel', ['$event'])
+	onWindowScroll($event: any)
+	{
+		console.log($event);
 	}
 
     ngOnInit(): void {
