@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {PlanetService} from '../../planet-service/planet.service';
 import {AllPlanetsComponent} from '../all-planets/all-planets.component';
 import {Element} from '@angular/compiler';
+import {lastValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-planet-orbit',
@@ -11,11 +12,13 @@ import {Element} from '@angular/compiler';
   templateUrl: './planet-orbit.component.html',
   styleUrl: './planet-orbit.component.css'
 })
-export class PlanetOrbitComponent {
+export class PlanetOrbitComponent implements OnInit {
 	@Input() parent!: AllPlanetsComponent;
 	@Input() planet!: Planet;
 	@Input() orbit_size!: number;
 	@Input() id!: number;
+
+	public planet_front_size!: number;
 
 	@ViewChild("image_planet_front") image_planet_front!: ElementRef;
 	@ViewChild("image_container_front") image_container_front!: ElementRef;
@@ -25,12 +28,18 @@ export class PlanetOrbitComponent {
 
 	@ViewChild("orbit_front") orbit_front!: ElementRef;
 
-	constructor(private router: Router, private planetService: PlanetService) {}
+	constructor(private planetService: PlanetService) {}
 
-	getPlanetFrontSize(): number
+	async ngOnInit(): Promise<void>
 	{
-		const biggest_diameter = this.planetService.getBiggestPlanet().diameter;
-		const smallest_diameter = this.planetService.getSmallestPlanet().diameter;
+		const biggest = await lastValueFrom(this.planetService.getBiggestPlanet());
+		const smallest = await lastValueFrom(this.planetService.getSmallestPlanet());
+
+		this.planet_front_size = this.getPlanetFrontSize(biggest.diameter, smallest.diameter);
+    }
+
+	getPlanetFrontSize(biggest_diameter: number, smallest_diameter: number): number
+	{
 		const biggest_value = 175;
 		const smallest_value = 75;
 		return smallest_value + (this.planet.diameter - smallest_diameter) / (biggest_diameter - smallest_diameter ) * (biggest_value - smallest_value);

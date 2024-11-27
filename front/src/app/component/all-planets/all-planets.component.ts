@@ -4,15 +4,17 @@ import {Planet} from '../../models/planet';
 import {PlanetService} from '../../planet-service/planet.service';
 import {Element} from '@angular/compiler';
 import {PlanetDescriptorComponent} from '../planet-descriptor/planet-descriptor.component';
+import {Observable} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-all-planets',
-  imports: [ PlanetOrbitComponent ],
+	imports: [PlanetOrbitComponent, AsyncPipe],
   templateUrl: './all-planets.component.html',
   styleUrl: './all-planets.component.css'
 })
 export class AllPlanetsComponent implements OnInit {
-	public planets!: Planet[];
+	public planets: Planet[] = [];
 	public orbit_size: number[] = [
 		3950,
 		3500,
@@ -30,7 +32,13 @@ export class AllPlanetsComponent implements OnInit {
 	constructor(private planetService: PlanetService, private viewContainer: ViewContainerRef) {}
 
 	ngOnInit(): void {
-		this.planets = this.planetService.getPlanets();
+		this.planetService.getPlanets().subscribe(data =>
+		{
+			this.planets = data
+				.sort((a, b) => a.distance_from_sun - b.distance_from_sun)
+				.reverse()
+				.map(planet => {planet.image = `assets/image/planets/${planet.name.toLowerCase()}.png`; return planet});
+		});
     }
 
 	private removeAllPlanets(selected_planet: PlanetOrbitComponent)

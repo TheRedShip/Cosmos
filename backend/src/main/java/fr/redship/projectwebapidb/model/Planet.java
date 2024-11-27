@@ -23,7 +23,7 @@ public class Planet {
 
     private String name;
     private double diameter;
-    private double distanceFromSun;
+    private double distance_from_sun;
     private String description;
 
     @OneToMany(mappedBy = "planet", cascade = CascadeType.ALL)

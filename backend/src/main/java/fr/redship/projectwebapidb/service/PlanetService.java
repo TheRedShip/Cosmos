@@ -38,7 +38,7 @@ public class PlanetService {
 
         planet.setName(planetDetails.getName());
         planet.setDiameter(planetDetails.getDiameter());
-        planet.setDistanceFromSun(planetDetails.getDistanceFromSun());
+        planet.setDistance_from_sun(planetDetails.getDistance_from_sun());
         planet.setDescription(planetDetails.getDescription());
         planet.setMoons(planetDetails.getMoons());
 
