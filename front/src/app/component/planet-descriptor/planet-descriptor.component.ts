@@ -78,7 +78,7 @@ export class PlanetDescriptorComponent implements OnInit {
 		this.planet_component.image_planet_front.nativeElement.style.setProperty("--translate-y", 0);
 		this.planet_component.image_planet_front.nativeElement.style.setProperty("--translate-scale", 1);
 
-		this.parent.reset();
+		this.parent.reset(this.planet_component);
 	}
 
 }

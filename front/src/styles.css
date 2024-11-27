@@ -24,8 +24,11 @@ html {
 	z-index: 10;
 }
 
-.anim-reverse
-{
-	animation-direction: reverse !important;
-	animation-fill-mode: forwards !important;
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

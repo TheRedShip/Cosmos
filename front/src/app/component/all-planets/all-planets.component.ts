@@ -69,28 +69,46 @@ export class AllPlanetsComponent implements OnInit {
 		this.child_sun.nativeElement.classList.add("move-fade-out");
 	}
 
-	private showDetailsPlanet(planet_component: PlanetOrbitComponent)
+	private showDetailsPlanet(selected_planet: PlanetOrbitComponent)
 	{
 		this.descriptor_component_ref = this.descriptor_container.createComponent(PlanetDescriptorComponent);
 
-		this.descriptor_component_ref.instance.planet_component = planet_component;
+		this.descriptor_component_ref.instance.planet_component = selected_planet;
 		this.descriptor_component_ref.instance.parent = this;
 	}
 
-	onClickPlanet(planetComponent: PlanetOrbitComponent): void
+	onClickPlanet(selected_planet: PlanetOrbitComponent): void
 	{
-		planetComponent.image_planet_front.nativeElement.classList.add('clicked');
+		selected_planet.image_planet_front.nativeElement.classList.add('clicked');
 
-		this.removeAllPlanets(planetComponent);
-		setTimeout(() => {planetComponent.showZoom()}, 750);
-		setTimeout(() => {this.showDetailsPlanet(planetComponent);}, 2500);
+		this.removeAllPlanets(selected_planet);
+		setTimeout(() => {selected_planet.showZoom()}, 750);
+		setTimeout(() => {this.showDetailsPlanet(selected_planet);}, 2500);
 	}
 
-	reset()
+	reset(selected_planet: PlanetOrbitComponent)
 	{
-		this.child_sun.nativeElement.classList.add("anim-reverse");
-		setTimeout(() => {
+		this.child_sun.nativeElement.classList.remove("move-fade-out");
+
+		setTimeout(() =>
+		{
 			this.descriptor_component_ref.destroy();
-		}, 1000)
+
+			this.child_planets.forEach((element: any, index: number) =>
+			{
+				const animation_delay: number = 100;
+				const distance = Math.abs(selected_planet.id - index);
+
+				element.showSwoosh(distance, animation_delay, selected_planet);
+			})
+		}, 1000);
+
+		setTimeout(() =>
+		{
+			selected_planet.image_planet_front.nativeElement.classList.remove("clicked");
+			selected_planet.image_container_front.nativeElement.classList.remove("border-fade-out");
+			selected_planet.image_planet_front.nativeElement.classList.remove("show-zoom");
+		}, 2000)
+
 	}
 }

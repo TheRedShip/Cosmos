@@ -11,13 +11,11 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-
-
 }
 
 .planet-descriptor-container *
 {
-	transition: opacity 1s ease-in-out, transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);;
+	transition: opacity 1s ease-in-out, transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .planet-descriptor
@@ -56,10 +54,14 @@ h1 {
 	text-align: center;
 	text-transform: uppercase;
 
-	letter-spacing: 50px;
+	/*letter-spacing: 50px;*/
+	letter-spacing: 1px;
 
 	font-size: 175px;
 	font-family: 'Montserrat', sans-serif;
+
+	animation: fade-in 1s ease-in-out forwards 0.5s,
+				letter-space-out 1s cubic-bezier(0.33, 1, 0.68, 1) forwards 1.5s;
 }
 
 p
@@ -74,4 +76,18 @@ p
 	font-size: 20px;
 	align-self: flex-start;
 	max-width: 600px;
+
+	text-shadow: 1px 1px 1px #000000;
+
+	animation: fade-in 1s ease-in-out forwards 1s;
+}
+
+
+@keyframes letter-space-out {
+	from {
+		letter-spacing: 1px;
+	} to
+	{
+		letter-spacing: 50px;
+	}
 }
