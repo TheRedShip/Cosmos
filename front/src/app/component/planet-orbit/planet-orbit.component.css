@@ -3,8 +3,13 @@
 {
 	--orbit-size: 0px;
 	--planet-size: 0px;
+
 	--impulse-distance: 0px;
 	--distance-y: 0px;
+
+	--translate-x: 0px;
+	--translate-y: 0px;
+	--translate-scale: 0;
 }
 
 .orbit-info-container
@@ -75,7 +80,7 @@
 	justify-content: center;
 	align-items: center;
 
-	border: 1px solid white;
+	border: 1px solid rgba(175, 175, 175, 1);
 	border-radius: 100%;
 	/*overflow: hidden;*/
 }
@@ -121,15 +126,15 @@ p
 }
 .image-orbit-container:hover
 {
-	border-color: rgba(255, 255, 255, 0.0);
+	border-color: rgba(175, 175, 175, 0.0);
 }
 
 @keyframes fade-border {
 	from {
-		border-color: rgba(255, 255, 255, 1);
+		border-color: rgba(175, 175, 175, 1);
 	}
 	to {
-		border-color: rgba(255, 255, 255, 0);
+		border-color: rgba(175, 175, 175, 0);
 	}
 }
 @keyframes move-and-scale {
@@ -178,7 +183,7 @@ p
 .move-to-distance-and-fade-out
 {
 	animation-name: fade-out, move-to-distance;
-	animation-duration: 0.75s;
+	animation-duration: 1s;
 	animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
 	animation-direction: normal;
 	animation-play-state: running;
@@ -189,6 +194,25 @@ p
 	animation-name: fade-out;
 	animation-duration: 0.5s;
 	animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+	animation-direction: normal;
+	animation-play-state: running;
+	animation-fill-mode: forwards;
+}
+
+@keyframes show-zoom-out {
+	from {
+		transform: translateX(0) translateY(0) scale(1);
+	}
+	to
+	{
+		transform: translateX(var(--translate-x)) translateY(var(--translate-y)) scale(var(--translate-scale));
+	}
+}
+.show-zoom
+{
+	animation-name: show-zoom-out;
+	animation-duration: 7.5s;
+	animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 	animation-direction: normal;
 	animation-play-state: running;
 	animation-fill-mode: forwards;

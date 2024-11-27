@@ -11,6 +11,13 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+
+
+}
+
+.planet-descriptor-container *
+{
+	transition: opacity 1s ease-in-out, transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);;
 }
 
 .planet-descriptor
@@ -29,7 +36,7 @@
 	z-index: 3;
 }
 
-.planet-statistics
+.planet-statistics-container
 {
 	position: relative;
 
@@ -51,18 +58,20 @@ h1 {
 
 	letter-spacing: 50px;
 
-	font-size: 130px;
+	font-size: 175px;
 	font-family: 'Montserrat', sans-serif;
 }
 
 p
 {
 	font-family: "Roboto Flex", sans-serif;
-	letter-spacing: 1.3px;
+	font-weight: bold;
+	color: #ffffff;
+	letter-spacing: 1.15px;
 	line-height: 1.6;
 	margin-left:-20px;
 	margin-top:40px;
-	font-size: 18px;
+	font-size: 20px;
 	align-self: flex-start;
 	max-width: 600px;
 }

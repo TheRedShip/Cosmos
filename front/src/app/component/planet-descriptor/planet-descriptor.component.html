@@ -1,9 +1,9 @@
 <div class="planet-descriptor-container">
-	<div class="planet-descriptor">
-		<h1>{{ planet.name }}</h1>
-		<p>{{ planet.description }}</p>
+	<div class="planet-descriptor" #planet_descriptor_front>
+		<h1  #planet_name_front>{{ planet.name }}</h1>
+		<p #planet_description_front>{{ planet.description }}</p>
 	</div>
-	<div class="planet-statistics">
+	<div class="planet-statistics-container" #statistic_container_front>
 		<app-planet-statistic />
 		<app-planet-statistic />
 		<app-planet-statistic />

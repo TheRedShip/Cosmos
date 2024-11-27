@@ -76,6 +76,23 @@ export class PlanetOrbitComponent implements OnInit {
 		}, animation_delay * distance);
 	}
 
+	showZoom() {
+		const rect = this.image_planet_front.nativeElement.getBoundingClientRect();
+
+		const scaleX = window.innerWidth / rect.width;
+		const scaleY = window.innerHeight / rect.height;
+		const scale = Math.max(scaleX, scaleY);
+		const translateX = (window.innerWidth / 2 - (rect.left + rect.width / 2));
+		const translateY = ((window.innerHeight / 2 - (rect.top + rect.height / 2))) + window.innerHeight / 1.5;
+
+
+		this.image_planet_front.nativeElement.style.setProperty("--translate-x", `${translateX}px`)
+		this.image_planet_front.nativeElement.style.setProperty("--translate-y", `${translateY}px`)
+		this.image_planet_front.nativeElement.style.setProperty("--translate-scale", scale);
+
+		this.image_planet_front.nativeElement.classList.add("show-zoom");
+	}
+
 	onClickImage(): void
 	{
 		this.parent.onClickPlanet(this);
