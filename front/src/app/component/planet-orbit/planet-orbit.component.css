@@ -9,7 +9,7 @@
 
 	--translate-x: 0px;
 	--translate-y: 0px;
-	--translate-scale: 0;
+	--translate-scale: 1;
 }
 
 .orbit-info-container
@@ -89,8 +89,14 @@
 	width: 100%;
 	opacity: 0;
 	z-index: 2;
+
+	transform: translateX(var(--translate-x)) translatey(var(--translate-y)) scale(var(--translate-scale));
 }
 
+.image-orbit.show-zoom
+{
+	transition: transform 3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
 
 p
 {
@@ -199,21 +205,3 @@ p
 	animation-fill-mode: forwards;
 }
 
-@keyframes show-zoom-out {
-	from {
-		transform: translateX(0) translateY(0) scale(1);
-	}
-	to
-	{
-		transform: translateX(var(--translate-x)) translateY(var(--translate-y)) scale(var(--translate-scale));
-	}
-}
-.show-zoom
-{
-	animation-name: show-zoom-out;
-	animation-duration: 7.5s;
-	animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-	animation-direction: normal;
-	animation-play-state: running;
-	animation-fill-mode: forwards;
-}

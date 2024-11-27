@@ -85,12 +85,11 @@ export class PlanetOrbitComponent implements OnInit {
 		const translateX = (window.innerWidth / 2 - (rect.left + rect.width / 2));
 		const translateY = ((window.innerHeight / 2 - (rect.top + rect.height / 2))) + window.innerHeight / 1.5;
 
+		this.image_planet_front.nativeElement.classList.add("show-zoom");
 
 		this.image_planet_front.nativeElement.style.setProperty("--translate-x", `${translateX}px`)
 		this.image_planet_front.nativeElement.style.setProperty("--translate-y", `${translateY}px`)
 		this.image_planet_front.nativeElement.style.setProperty("--translate-scale", scale);
-
-		this.image_planet_front.nativeElement.classList.add("show-zoom");
 	}
 
 	onClickImage(): void

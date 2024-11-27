@@ -1,4 +1,13 @@
-import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
+import {
+	Component,
+	ComponentRef,
+	ElementRef,
+	OnInit,
+	QueryList,
+	ViewChild,
+	ViewChildren,
+	ViewContainerRef
+} from '@angular/core';
 import { PlanetOrbitComponent } from '../planet-orbit/planet-orbit.component';
 import {Planet} from '../../models/planet';
 import {PlanetService} from '../../planet-service/planet.service';
@@ -26,6 +35,9 @@ export class AllPlanetsComponent implements OnInit {
 
 	@ViewChildren("child_planet") private child_planets!: QueryList<ElementRef>;
 	@ViewChild("child_sun") private child_sun!: ElementRef;
+
+	@ViewChild("planet_descriptor", {read: ViewContainerRef}) descriptor_container!: ViewContainerRef;
+	private	descriptor_component_ref!: ComponentRef<PlanetDescriptorComponent>;
 
 	constructor(private planetService: PlanetService, private viewContainer: ViewContainerRef) {}
 
@@ -57,11 +69,12 @@ export class AllPlanetsComponent implements OnInit {
 		this.child_sun.nativeElement.classList.add("move-fade-out");
 	}
 
-	private showDetailsPlanet(planet: Planet)
+	private showDetailsPlanet(planet_component: PlanetOrbitComponent)
 	{
-		const componentRef = this.viewContainer.createComponent(PlanetDescriptorComponent);
+		this.descriptor_component_ref = this.descriptor_container.createComponent(PlanetDescriptorComponent);
 
-		componentRef.instance.planet = planet;
+		this.descriptor_component_ref.instance.planet_component = planet_component;
+		this.descriptor_component_ref.instance.parent = this;
 	}
 
 	onClickPlanet(planetComponent: PlanetOrbitComponent): void
@@ -70,6 +83,14 @@ export class AllPlanetsComponent implements OnInit {
 
 		this.removeAllPlanets(planetComponent);
 		setTimeout(() => {planetComponent.showZoom()}, 750);
-		setTimeout(() => {this.showDetailsPlanet(planetComponent.planet);}, 2500);
+		setTimeout(() => {this.showDetailsPlanet(planetComponent);}, 2500);
+	}
+
+	reset()
+	{
+		this.child_sun.nativeElement.classList.add("anim-reverse");
+		setTimeout(() => {
+			this.descriptor_component_ref.destroy();
+		}, 1000)
 	}
 }

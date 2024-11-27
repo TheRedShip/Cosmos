@@ -13,6 +13,8 @@ import {PlanetStatisticComponent} from '../planet-statistic/planet-statistic.com
 import {Planet} from '../../models/planet';
 import {ActivatedRoute} from '@angular/router';
 import {PlanetService} from '../../planet-service/planet.service';
+import {AllPlanetsComponent} from '../all-planets/all-planets.component';
+import {PlanetOrbitComponent} from '../planet-orbit/planet-orbit.component';
 
 @Component({
 	selector: 'app-planet-descriptor',
@@ -23,7 +25,9 @@ import {PlanetService} from '../../planet-service/planet.service';
 	styleUrl: './planet-descriptor.component.css'
 })
 export class PlanetDescriptorComponent implements OnInit {
-	public planet!: Planet;
+	public planet_component!: PlanetOrbitComponent;
+	public parent!: AllPlanetsComponent;
+
 	private max_scroll: number = 200;
 	private scroll: number = this.max_scroll;
 	private scroll_factor: number = 25;
@@ -49,10 +53,10 @@ export class PlanetDescriptorComponent implements OnInit {
 		if (this.scroll < this.max_scroll / 2)
 			return this.reset();
 
-		this.setAnimationValue(this.scroll);
+		this.setAnimationValue(this.scroll, direction);
 	}
 
-	setAnimationValue(value: number)
+	setAnimationValue(value: number, direction: number)
 	{
 		this.planet_descriptor_front.nativeElement.style.opacity = value / this.max_scroll;
 		this.statistic_container_front.nativeElement.style.opacity = value / this.max_scroll;
@@ -61,13 +65,20 @@ export class PlanetDescriptorComponent implements OnInit {
 		this.planet_description_front.nativeElement.style.transform = `translateX(-${(this.max_scroll - value) * 1.5}px)`;
 		this.statistic_container_front.nativeElement.style.transform = `translateY(${(this.max_scroll - value) * 1.5}px)`;
 
-		//destroy
+		const previous_scale = getComputedStyle(this.planet_component.image_planet_front.nativeElement).getPropertyValue("--translate-scale");
+		this.planet_component.image_planet_front.nativeElement.style.setProperty("--translate-scale", parseFloat(previous_scale) - 0.2 * direction);
 	}
 
 	private reset()
 	{
 		this.scroll = 0;
-		this.setAnimationValue(this.scroll)
+		this.setAnimationValue(this.scroll, 1);
+
+		this.planet_component.image_planet_front.nativeElement.style.setProperty("--translate-x", 0);
+		this.planet_component.image_planet_front.nativeElement.style.setProperty("--translate-y", 0);
+		this.planet_component.image_planet_front.nativeElement.style.setProperty("--translate-scale", 1);
+
+		this.parent.reset();
 	}
 
 }
