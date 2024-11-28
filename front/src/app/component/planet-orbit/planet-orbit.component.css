@@ -125,7 +125,8 @@ p
 	transition: 0.5s transform cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.image-orbit-container:hover .image-orbit.image-orbit:not(.clicked) , .image-orbit-container:hover + .info-container .planet-moons
+.image-orbit-container:hover .image-orbit.image-orbit:not(.clicked),
+.image-orbit-container:hover + .info-container .planet-moons
 {
 	cursor: pointer;
 	transform: scale(1.3);
