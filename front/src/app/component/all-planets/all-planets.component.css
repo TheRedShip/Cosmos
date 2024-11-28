@@ -1,3 +1,36 @@
+.base-container
+{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+
+	background-color: black;
+
+	min-width: 100vw;
+	min-height: 100vh;
+}
+
+.title-container
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-direction: row;
+}
+.title-container img
+{
+	margin-top: -30px;
+	width: 100px;
+	filter: brightness(5);
+}
+.title
+{
+	padding: 15px;
+	padding-bottom: 50px;
+}
+
 .all-planets-container
 {
 	overflow: hidden;
@@ -7,8 +40,12 @@
 	justify-content: center;
 	align-items: center;
 
-	min-height: 100vh;
-	min-width: 100vw;
+	/*min-height: 100vh;*/
+	/*min-width: 100vw;*/
+	height: 100%;
+	width: 100%;
+	flex: 1;
+
 	background: black;
 
 	gap:75px;

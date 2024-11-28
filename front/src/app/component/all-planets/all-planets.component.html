@@ -1,16 +1,22 @@
-<div class="all-planets-container">
-	<div class="planet-orbits-container">
-		@if (this.planets.length != 0)
-		{
-			@for (planet of planets; track planet.id; let id = $index) {
-				<app-planet-orbit #child_planet [parent]="this" [planet]="planet" [orbit_size]="orbit_size[id]" [id]="planet.id"/>
+<div class="base-container">
+	<div class="title-container">
+		<app-colortitle class="title" title="Cosmos" size="45px" gradient="#00FFFF, #0080FF"/>
+		<img src="/assets/image/logo.png">
+	</div>
+	<div class="all-planets-container">
+		<div class="planet-orbits-container">
+			@if (this.planets.length != 0)
+			{
+				@for (planet of planets; track planet.id; let id = $index) {
+					<app-planet-orbit #child_planet [parent]="this" [planet]="planet" [orbit_size]="orbit_size[id]" [id]="planet.id"/>
+				}
 			}
-		}
+		</div>
+		<div class="sun-container" #child_sun>
+	<!--		<img src="assets/image/planets/sun.png" class="sun" />-->
+		</div>
 	</div>
-	<div class="sun-container" #child_sun>
-<!--		<img src="assets/image/planets/sun.png" class="sun" />-->
-	</div>
-</div>
-<ng-template #planet_descriptor>
+	<ng-template #planet_descriptor>
 
 </ng-template>
+</div>
