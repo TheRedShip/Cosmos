@@ -12,10 +12,11 @@ import { PlanetOrbitComponent } from '../planet-orbit/planet-orbit.component';
 import {Planet} from '../../models/planet';
 import {PlanetService} from '../../service/planet-service/planet.service';
 import {PlanetDescriptorComponent} from '../planet-descriptor/planet-descriptor.component';
+import {ColortitleComponent} from '../colortitle/colortitle.component';
 
 @Component({
   selector: 'app-all-planets',
-	imports: [PlanetOrbitComponent],
+	imports: [PlanetOrbitComponent, ColortitleComponent],
   templateUrl: './all-planets.component.html',
   styleUrl: './all-planets.component.css'
 })
@@ -57,8 +58,10 @@ export class AllPlanetsComponent implements OnInit {
 
 			const animation_delay: number = 100;
 
-			const distance = Math.abs(selected_planet.id - index);
-			const direction = selected_planet.id > index ? -1 : 1;
+			const selected_planet_id = this.child_planets.length - selected_planet.id;
+
+			const distance = Math.abs(selected_planet_id - index);
+			const direction = selected_planet_id > index ? -1 : 1;
 			const impulse = direction * -distance;
 
 			element.hideSwoosh(impulse, distance, animation_delay, selected_planet);

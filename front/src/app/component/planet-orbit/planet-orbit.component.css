@@ -14,6 +14,7 @@
 
 .orbit-info-container
 {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -24,6 +25,8 @@
 	text-align: center;
 
 	background: black;
+
+	/*z-index: 1;*/
 }
 
 .orbit
@@ -40,7 +43,7 @@
       <circle cx="50" cy="50" r="45" fill="none" stroke="%23505050" stroke-width="0.1" stroke-dasharray="1 1"/> \
     </svg>') no-repeat center/contain;
 
-	z-index: -2;
+	z-index: -1;
 
 	transition: opacity 0.5s cubic-bezier(0.32, 0, 0.67, 0);
 }
@@ -89,6 +92,7 @@
 }
 .image-orbit
 {
+	position: relative;
 	width: 100%;
 	opacity: 0;
 	z-index: 2;

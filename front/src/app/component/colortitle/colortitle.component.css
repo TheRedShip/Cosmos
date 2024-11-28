@@ -1,15 +1,13 @@
 h1 {
-	padding: 0;
-	margin: 0;
-
-	text-align: center;
-
-	font-size: 150px;
 	font-family: 'Montserrat', sans-serif;
 }
 
-.gradient-title-blue {
-	background: linear-gradient(135deg, #0077b6, #90e0ef, #caf0f8);
+.gradient-title {
+	--size: 25px;
+	--gradient: #a855f7, #f472b6;
+
+	font-size: var(--size);
+	background: linear-gradient(135deg, var(--gradient));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }

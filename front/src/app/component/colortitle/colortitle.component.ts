@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Host, HostBinding, Input} from '@angular/core';
 import {Colortitle} from '../../models/colortitle';
 
 @Component({
@@ -8,5 +8,8 @@ import {Colortitle} from '../../models/colortitle';
   styleUrl: './colortitle.component.css'
 })
 export class ColortitleComponent {
+
     @Input() title!: string;
+	@Input() size!: string;
+	@Input() gradient!: string;
 }

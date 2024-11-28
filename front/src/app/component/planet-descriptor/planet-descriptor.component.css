@@ -46,6 +46,8 @@ h1 {
 	font-size: 175px;
 	font-family: 'Montserrat', sans-serif;
 
+	color: white;
+
 	animation: fade-in 1s ease-in-out forwards 0.5s,
 				letter-space-out 1s cubic-bezier(0.33, 1, 0.68, 1) forwards 1.5s;
 }

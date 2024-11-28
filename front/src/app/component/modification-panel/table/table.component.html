@@ -1,0 +1,23 @@
+<table class="panel-table">
+	<thead>
+		<tr>
+			<th scope="col" >ID</th>
+			<th scope="col" >Name</th>
+			<th scope="col" >Description</th>
+			<th scope="col" >Diameter</th>
+			<th scope="col" >Distance from sun</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (planet of planets; track planet.id)
+		{
+			<tr>
+				<th scope="row">{{ planet.id }}</th>
+				<td>{{ planet.name }}</td>
+				<td class="td-description">{{ planet.description }}</td>
+				<td>{{ planet.diameter }} km</td>
+				<td>{{ planet.distance_from_sun}} AU</td>
+			</tr>
+		}
+	</tbody>
+</table>
