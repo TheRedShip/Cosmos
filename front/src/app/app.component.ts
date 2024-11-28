@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {PlanetDescriptorComponent} from './component/planet-descriptor/planet-descriptor.component';
 import { Planet } from './models/planet';
-import {PlanetService} from './planet-service/planet.service';
+import {PlanetService} from './service/planet-service/planet.service';
 
 @Component({
 	selector: 'app-root',

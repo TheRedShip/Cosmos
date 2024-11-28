@@ -3,7 +3,7 @@
 		@if (this.planets.length != 0)
 		{
 			@for (planet of planets; track planet.id; let id = $index) {
-				<app-planet-orbit #child_planet [parent]="this" [planet]="planet" [orbit_size]="orbit_size[id]" [id]="id"/>
+				<app-planet-orbit #child_planet [parent]="this" [planet]="planet" [orbit_size]="orbit_size[id]" [id]="planet.id"/>
 			}
 		}
 	</div>

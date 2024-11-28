@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
 	selector: 'app-planet-statistic',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 	styleUrl: './planet-statistic.component.css'
 })
 export class PlanetStatisticComponent {
-	
+	@Input() property!: string;
+	@Input() value!: number | string;
 }

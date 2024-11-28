@@ -1,0 +1,11 @@
+<div class="planet-statistic-container">
+	<p class="statistic-name">{{ property }}</p>
+	@if (typeof value == 'number' )
+	{
+		<p class="statistic-value .statistic-number">{{ value }}</p>
+	}
+	@else
+	{
+		<p class="statistic-value .statistic-string"> {{ value }}</p>
+	}
+</div>

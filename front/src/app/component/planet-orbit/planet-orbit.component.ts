@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, ViewChild} from '@angular/core';
 import {Planet} from '../../models/planet';
 import {Router} from '@angular/router';
-import {PlanetService} from '../../planet-service/planet.service';
+import {PlanetService} from '../../service/planet-service/planet.service';
 import {AllPlanetsComponent} from '../all-planets/all-planets.component';
 import {Element} from '@angular/compiler';
 import {lastValueFrom} from 'rxjs';

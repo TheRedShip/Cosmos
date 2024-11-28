@@ -3,10 +3,5 @@
 		<h1 style='opacity: 0'  #planet_name_front>{{ planet_component.planet.name }}</h1>
 		<p style='opacity: 0' #planet_description_front>{{ planet_component.planet.description }}</p>
 	</div>
-	<div class="planet-statistics-container" #statistic_container_front>
-		<app-planet-statistic />
-		<app-planet-statistic />
-		<app-planet-statistic />
-		<app-planet-statistic />
-	</div>
+	<app-planet-statistic-list [planet_id]="planet_component.id" />
 </div>

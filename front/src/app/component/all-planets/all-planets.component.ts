@@ -10,13 +10,12 @@ import {
 } from '@angular/core';
 import { PlanetOrbitComponent } from '../planet-orbit/planet-orbit.component';
 import {Planet} from '../../models/planet';
-import {PlanetService} from '../../planet-service/planet.service';
+import {PlanetService} from '../../service/planet-service/planet.service';
 import {PlanetDescriptorComponent} from '../planet-descriptor/planet-descriptor.component';
-import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-all-planets',
-	imports: [PlanetOrbitComponent, AsyncPipe],
+	imports: [PlanetOrbitComponent],
   templateUrl: './all-planets.component.html',
   styleUrl: './all-planets.component.css'
 })
@@ -80,7 +79,7 @@ export class AllPlanetsComponent implements OnInit {
 	onClickPlanet(selected_planet: PlanetOrbitComponent): void
 	{
 		selected_planet.image_planet_front.nativeElement.classList.add('clicked');
-
+		console.log(selected_planet)
 		this.removeAllPlanets(selected_planet);
 		setTimeout(() => {selected_planet.showZoom()}, 750);
 		setTimeout(() => {this.showDetailsPlanet(selected_planet);}, 2500);

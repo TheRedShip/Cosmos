@@ -1,0 +1,9 @@
+<div class="planet-statistics-container" #statistic_container_front>
+	@if (this.stats)
+	{
+		<app-planet-statistic property="Day hours" [value]="stats.day_hours" />
+		<app-planet-statistic property="Gravity" [value]="stats.gravity" />
+		<app-planet-statistic property="Planet type" [value]="stats.planet_type"/>
+		<app-planet-statistic property="Temperature" [value]="stats.temperature"/>
+	}
+</div>
