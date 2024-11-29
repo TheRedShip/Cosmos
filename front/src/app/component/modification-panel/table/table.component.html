@@ -1,26 +1,42 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-	<table class="panel-table" #table_front>
-		<thead>
-			<tr>
-				<th scope="col" >ID</th>
-				<th scope="col" >Name</th>
-				<th scope="col" >Description</th>
-				<th scope="col" >Diameter</th>
-				<th scope="col" >Distance from sun</th>
-			</tr>
-		</thead>
-		<tbody formArrayName="table">
-			@for (row of table.controls; track row.value.id; let i = $index)
-			{
-				<tr [formGroupName]="i">
-					<th scope="row">{{ row.get('id')?.value }}</th>
-					<td contenteditable="true" (input)="updateValue(i, 'name', $event)" class="editable">{{ row.get('name')?.value }}</td>
-					<td contenteditable="true" (input)="updateValue(i, 'description', $event)" class="editable td-description">{{ row.get('description')?.value }}</td>
-					<td contenteditable="true" (input)="updateValue(i, 'diameter', $event)" class="editable">{{ row.get('diameter')?.value }} km</td>
-					<td contenteditable="true" (input)="updateValue(i, 'distance_from_sun', $event)" class="editable">{{ row.get('distance_from_sun')?.value}} AU</td>
+	<div class="form-container">
+		<table class="panel-table" #table_front>
+			<thead>
+				<tr>
+					<th scope="col" >ID</th>
+					<th scope="col" >Name</th>
+					<th scope="col" >Description</th>
+					<th scope="col" >Diameter</th>
+					<th scope="col" >Distance from sun</th>
 				</tr>
-			}
-		</tbody>
-	</table>
-	<button type="submit">save</button>
+			</thead>
+			<tbody formArrayName="table">
+				@for (row of table.controls; track row.value.id; let i = $index)
+				{
+					<tr [formGroupName]="i">
+						<th scope="row">{{ row.get('id')?.value }}</th>
+						<td contenteditable="true" (input)="updateValue(i, 'name', $event)" class="editable">
+							{{ row.get('name')?.value }}
+						</td>
+						<td contenteditable="true" (input)="updateValue(i, 'description', $event)" class="editable td-description">
+							{{ row.get('description')?.value }}
+						</td>
+						<td contenteditable="true" (input)="updateValue(i, 'diameter', $event)" class="editable">
+							{{ row.get('diameter')?.value }} <span>km</span>
+						</td>
+						<td contenteditable="true" (input)="updateValue(i, 'distance_from_sun', $event)" class="editable">
+							{{ row.get('distance_from_sun')?.value}} <span>AU</span>
+						</td>
+					</tr>
+				}
+				<div #new_entries>
+
+				</div>
+				<tr class="table-new-row">
+					<th scope="row"><button (click)="new_table_entry()" class="table-new-btn" type="button">+</button></th>
+				</tr>
+			</tbody>
+		</table>
+		<button [disabled]="form.invalid" class="save-btn" type="submit">Save</button>
+	</div>
 </form>

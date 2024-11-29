@@ -10,7 +10,7 @@ import {
 	ViewChildren
 } from '@angular/core';
 import {Planet} from '../../../models/planet';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PlanetService} from '../../../service/planet-service/planet.service';
 
 @Component({
@@ -63,10 +63,15 @@ export class TableComponent implements AfterViewInit, OnChanges {
 		const rows = this.planets.map((planet) =>
 			this.fb.group({
 				id: [planet.id],
-				name: [planet.name],
-				description: [planet.description],
-				diameter: [planet.diameter],
-				distance_from_sun: [planet.distance_from_sun],
+				name: [planet.name, [Validators.required, Validators.minLength(1)]],
+				description: [planet.description, Validators.maxLength(200)],
+				diameter: [
+					planet.diameter,
+					[Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)],
+				],
+				distance_from_sun: [
+					planet.distance_from_sun,
+					[Validators.required, Validators.min(0.1), Validators.pattern(/^\d+(\.\d+)?$/)]],
 			})
 		);
 
@@ -79,8 +84,16 @@ export class TableComponent implements AfterViewInit, OnChanges {
 		return this.form.get('table') as FormArray;
 	}
 
-	updateValue(row_index: number, control_name: string, $event: Event) {
-		const value = ($event.target as HTMLElement).textContent?.trim();
+	updateValue(row_index: number, control_name: string, $event: Event)
+	{
+		const td_element = $event.target as HTMLElement;
+
+		const span_element = td_element.textContent?.trim();
+		const unit_span = td_element.querySelector('span')
+		const unit = unit_span?.textContent?.trim() || '';
+
+		const value = span_element?.replace(unit, '').trim();
+
 		if (value !== undefined)
 		{
 			const current_changes = this.temporary_changes.get(row_index) || {};
@@ -91,13 +104,37 @@ export class TableComponent implements AfterViewInit, OnChanges {
 
 	onSubmit(): void
 	{
-		this.temporary_changes.forEach((changes: any, planet_id: number) =>
+		if (this.form.valid)
 		{
-			console.log(planet_id, changes);
-			this.planetService.patchPlanet(planet_id + 1, changes).subscribe((data) =>
-			{
-				console.log(data);
+			this.temporary_changes.forEach((changes: any, planet_id: number) => {
+				if (!this.planets.map(planet => planet.id).includes(planet_id + 1)) {
+					this.planetService.postPlanet(changes).subscribe((data) => {})
+					this.planets.push(changes);
+				}
+				else
+					this.planetService.patchPlanet(planet_id + 1, changes).subscribe((data) => {})
 			})
+		}
+		this.temporary_changes.clear();
+	}
+
+	new_table_entry()
+	{
+		const new_rod_id = this.table.controls.length + 1; //to change
+
+		const new_row = this.fb.group({
+			id: [new_rod_id],
+			name: [''],
+			description: [''],
+			diameter: [0],
+			distance_from_sun: [0],
 		})
+
+		const changes: any = {};
+		for (let change of Object.keys(new_row.value))
+			changes[change] = new_row.get(change)?.value;
+
+		this.temporary_changes.set(new_rod_id - 1, changes);
+		this.table.push(new_row);
 	}
 }

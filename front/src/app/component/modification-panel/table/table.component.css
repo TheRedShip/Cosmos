@@ -1,3 +1,13 @@
+.form-container
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	gap: 5px;
+}
+
 .panel-table
 {
 	border-collapse: separate;
@@ -69,5 +79,39 @@
 	border-radius: 3px;
 
 	white-space: break-spaces;
+}
 
+
+.save-btn
+{
+	align-self: flex-end;
+
+	width:150px;
+	height:45px;
+	margin-top:15px;
+	border-radius: 1em;
+	font-size: 25px;
+	font-family: 'Outfit', sans-serif;
+	border: 2px solid gray;
+	box-shadow: 0px 5px 15px rgba(100, 102, 231, 0.3);
+}
+
+.table-new-row th
+{
+	padding: 15px;
+}
+
+.table-new-btn
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:40px;
+	height:40px;
+
+	border-radius: 1em;
+	font-size: 30px;
+	font-family: 'Outfit', sans-serif;
+	border: 2px solid gray;
+	box-shadow: 0px 5px 15px rgba(100, 102, 231, 0.3);
 }

@@ -34,6 +34,11 @@ export class PlanetService {
 	{
 		return this.http.patch<Planet>(this.api_url + `/${id}`, planet);
 	}
+
+	postPlanet(planet: Object): Observable<Planet>
+	{
+		return this.http.post<Planet>(this.api_url, planet);
+	}
 }
 
 
