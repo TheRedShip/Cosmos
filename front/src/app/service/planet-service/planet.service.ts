@@ -29,6 +29,11 @@ export class PlanetService {
 				current.diameter > biggest.diameter ? current : biggest))
 		);
 	}
+
+	patchPlanet(id: number, planet: Object): Observable<Planet>
+	{
+		return this.http.patch<Planet>(this.api_url + `/${id}`, planet);
+	}
 }
 
 

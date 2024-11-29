@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import {Planet} from '../../../models/planet';
 import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {PlanetService} from '../../../service/planet-service/planet.service';
 
 @Component({
 	selector: 'app-table',
@@ -25,17 +26,35 @@ export class TableComponent implements AfterViewInit, OnChanges {
 	@ViewChild("table_front") table_front!: ElementRef;
 
 	form: FormGroup;
-	modified_rows: Set<number> = new Set();
+	temporary_changes: Map<number, any> = new Map();
 
-	constructor(private fb: FormBuilder) {
+	constructor(private fb: FormBuilder, private planetService: PlanetService)
+	{
 		this.form = this.fb.group({
 			table: this.fb.array([])
 		});
 	}
 
+	ngAfterViewInit(): void {
+		this.table_front.nativeElement.addEventListener("keydown", (event: any) =>
+		{
+			const cell = event.target;
+
+			if (cell.classList.contains("editable"))
+			{
+				if (event.key == "Enter")
+				{
+					event.preventDefault();
+					cell.blur();
+				}
+			}
+		})
+	}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		if (this.planets)
 		{
+			this.planets.sort((a, b) => a.id - b.id);
 			this.updateFormArray();
 		}
     }
@@ -60,39 +79,25 @@ export class TableComponent implements AfterViewInit, OnChanges {
 		return this.form.get('table') as FormArray;
 	}
 
-	onSubmit(): void
-	{
-		const modified_data = this.table.controls
-			.filter((_, index) => this.modified_rows.has(index))
-			.map((control) => control.value);
-
-		console.log(modified_data);
-	}
-
-	ngAfterViewInit(): void {
-
-		this.table_front.nativeElement.addEventListener("keydown", (event: any) =>
-		{
-			const cell = event.target;
-
-			if (cell.classList.contains("editable"))
-			{
-				if (event.key == "Enter")
-				{
-					event.preventDefault();
-					cell.blur();
-				}
-			}
-		})
-    }
-
 	updateValue(row_index: number, control_name: string, $event: Event) {
 		const value = ($event.target as HTMLElement).textContent?.trim();
 		if (value !== undefined)
 		{
-			console.log(row_index, control_name);
-			this.table.at(row_index).get(control_name)?.setValue(value);
-			this.modified_rows.add(row_index);
+			const current_changes = this.temporary_changes.get(row_index) || {};
+			current_changes[control_name] = value;
+			this.temporary_changes.set(row_index, current_changes);
 		}
+	}
+
+	onSubmit(): void
+	{
+		this.temporary_changes.forEach((changes: any, planet_id: number) =>
+		{
+			console.log(planet_id, changes);
+			this.planetService.patchPlanet(planet_id + 1, changes).subscribe((data) =>
+			{
+				console.log(data);
+			})
+		})
 	}
 }
