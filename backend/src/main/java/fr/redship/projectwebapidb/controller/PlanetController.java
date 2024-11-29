@@ -45,4 +45,23 @@ public class PlanetController {
         return ResponseEntity.ok(updatedPlanet);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Planet> patchPlanet(@PathVariable Long id, @RequestBody Planet incomplete_planet)
+    {
+        Planet existing_planet = planetService.getPlanetById(id);
+
+        if (existing_planet == null)
+            return ResponseEntity.notFound().build();
+
+        if (incomplete_planet.getName() != null)
+            existing_planet.setName(incomplete_planet.getName());
+        if (incomplete_planet.getDescription() != null)
+            existing_planet.setDescription(incomplete_planet.getDescription());
+        if (incomplete_planet.getDistance_from_sun() != 0.0f)
+            existing_planet.setDistance_from_sun(incomplete_planet.getDistance_from_sun());
+        if (incomplete_planet.getDiameter() != 0.0f)
+            existing_planet.setDiameter(incomplete_planet.getDiameter());
+
+        return ResponseEntity.ok(planetService.savePlanet(existing_planet));
+    }
 }
