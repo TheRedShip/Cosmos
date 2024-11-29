@@ -10,7 +10,8 @@
 	font-size: 16px;
 
 	overflow: hidden;
-	box-shadow: 0px 5px 7px rgba(100, 100, 100, 0.5);
+	/*box-shadow: 0px 5px 7px rgba(100, 100, 100, 0.5);*/
+	box-shadow: 0px 5px 15px rgba(100, 102, 231, 0.3);
 }
 
 .panel-table tr:first-child th,
@@ -44,11 +45,29 @@
 
 .td-description
 {
+	color: #777777;
+}
+
+.editable
+{
 	max-width: 100px;
 	white-space: nowrap;
 
 	overflow: hidden;
 	text-overflow: ellipsis;
 
-	color: #777777;
+	transition: 0.1s background-color ease-in-out,
+				0.2s border ease-in-out;
+}
+
+.editable:focus
+{
+	outline: none;
+	background-color: #f0f8ff;
+	border: 1px solid #0078d4;
+	border-bottom: 1px solid #0078d4 !important;
+	border-radius: 3px;
+
+	white-space: break-spaces;
+
 }

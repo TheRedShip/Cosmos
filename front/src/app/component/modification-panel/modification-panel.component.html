@@ -1,9 +1,10 @@
 <div class="panel-container">
-	<div class="panel-sidebar">
-
-	</div>
+	<div class="panel-sidebar"></div>
 	<div class="panel-content">
-		<app-colortitle title="Planets" size="75px" gradient="#000000, #000000" />
+		<div class="table-management">
+			<app-colortitle title="Planets" size="75px" gradient="#000000, #000000" />
+			<button class="save-btn">Save</button>
+		</div>
 		<div class="panel-box">
 			<app-table [planets]="planets" />
 		</div>

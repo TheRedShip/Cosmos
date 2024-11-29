@@ -8,8 +8,7 @@ import {KeyValuePipe} from '@angular/common';
 @Component({
   selector: 'app-planet-statistic-list',
 	imports: [
-		PlanetStatisticComponent,
-		KeyValuePipe
+		PlanetStatisticComponent
 	],
   templateUrl: './planet-statistic-list.component.html',
   styleUrl: './planet-statistic-list.component.css'

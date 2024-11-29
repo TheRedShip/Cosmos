@@ -20,7 +20,6 @@ import {PlanetStatisticListComponent} from '../planet-statistic-list/planet-stat
 @Component({
 	selector: 'app-planet-descriptor',
 	imports: [
-		PlanetStatisticComponent,
 		PlanetStatisticListComponent
 	],
 	templateUrl: './planet-descriptor.component.html',

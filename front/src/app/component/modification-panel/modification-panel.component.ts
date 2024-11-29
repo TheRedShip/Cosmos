@@ -16,7 +16,6 @@ import {Planet} from '../../models/planet';
 export class ModificationPanelComponent implements OnInit {
 	public planets!: Planet[];
 
-
 	constructor(private planetService: PlanetService) {}
 
 	ngOnInit(): void
