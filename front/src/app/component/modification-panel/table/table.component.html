@@ -10,25 +10,22 @@
 					<th scope="col" >Distance from sun</th>
 				</tr>
 			</thead>
-			<tbody formArrayName="table">
-				@for (row of table.controls; track row.value.id; let i = $index)
-				{
-					<tr [formGroupName]="i">
-						<th scope="row">{{ row.get('id')?.value }}</th>
-						<td contenteditable="true" (input)="updateValue(i, 'name', $event)" class="editable">
-							{{ row.get('name')?.value }}
-						</td>
-						<td contenteditable="true" (input)="updateValue(i, 'description', $event)" class="editable td-description">
-							{{ row.get('description')?.value }}
-						</td>
-						<td contenteditable="true" (input)="updateValue(i, 'diameter', $event)" class="editable">
-							{{ row.get('diameter')?.value }} <span>km</span>
-						</td>
-						<td contenteditable="true" (input)="updateValue(i, 'distance_from_sun', $event)" class="editable">
-							{{ row.get('distance_from_sun')?.value}} <span>AU</span>
-						</td>
-					</tr>
-				}
+			<tbody formArrayName="rows">
+				<tr *ngFor="let row of rows.controls; let i = index" [formGroupName]="i">
+					<th scope="row">{{ i + 1}}</th>
+					<td>
+						<input formControlName="name" class="editable" />
+					</td>
+					<td class="td-description">
+						<textarea formControlName="description" class="editable td-description"></textarea>
+					</td>
+					<td>
+						<input formControlName="diameter" class="editable" /> km
+					</td>
+					<td>
+						<input formControlName="distance_from_sun" class="editable" /> AU
+					</td>
+				</tr>
 				<div #new_entries>
 
 				</div>

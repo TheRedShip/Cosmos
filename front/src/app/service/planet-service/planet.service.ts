@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Planet} from '../../models/planet';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, of, tap} from 'rxjs';
+import {FormArray} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,15 @@ export class PlanetService {
 	getPlanets(): Observable<Planet[]>
 	{
 		return this.http.get<Planet[]>(this.api_url);
+	}
+
+	getPlanetsAsFormArray(): Observable<FormArray>
+	{
+		return this.getPlanets().pipe(map((planets: Planet[]) =>
+		{
+			const fgs = planets.map(Planet.asFormGroup);
+			return new FormArray(fgs);
+		}));
 	}
 
 	getSmallestPlanet(): Observable<Planet> {

@@ -38,6 +38,16 @@
 	padding-left:30px;
 }
 
+.panel-table input
+{
+	width:min-content;
+	max-width: 100px;
+	border: none;
+	font-size: 16px;
+	font-family: 'Outfit', sans-serif;
+	background-color: transparent;
+}
+
 .panel-table td,
 .panel-table
 {
@@ -56,14 +66,13 @@
 .td-description
 {
 	color: #777777;
+	max-width: 500px !important;
 }
 
 .editable
 {
 	max-width: 100px;
-	white-space: nowrap;
 
-	overflow: hidden;
 	text-overflow: ellipsis;
 
 	transition: 0.1s background-color ease-in-out,
